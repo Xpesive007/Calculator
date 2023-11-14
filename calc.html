@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/4c36529925.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .man {
+        width: 300px;
+        height: 500px;
+        border: 1px solid black;
+        justify-content: center;
+        background-color: #efefef;
+        margin-left: 40%;
+        margin-top: 10%;
+        top: 80px;
+    }
+
+    .man1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 280px;
+        padding: 10px;
+    }
+
+    .been {
+        display: flex;
+    }
+
+    #reel {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #let {
+        font-size: 25px;
+    }
+
+    /* #tie{
+    width: 300px;
+    height: 70px;
+    margin-left: 15px;
+    border: 1px solid black;
+} */
+    .gg{
+        font-size: 25px;
+        margin-top: 77px;
+    }
+    .bb{
+        display: flex;
+        gap: 2px;
+        margin-top: 2px;
+    }
+    #same{
+        height: 45px;
+        width: 50px;
+        background-color: #efefef;
+        /* margin-left: -5px; */
+        border: none;
+    }
+    #fame{
+        height: 45px;
+        width: 75px;
+        background-color: #f7f6f6;
+        /* margin-left: -5px; */
+        border: none;
+    }
+    #famer{
+        height: 45px;
+        width: 75px;
+        font-weight: bold;
+        font-size: 25px;
+        background-color: white;
+        /* margin-left: -5px; */
+        border: none;
+    }
+    #to {
+        width: fit-content;
+        height: 30px;
+        margin-left: 70%;
+        border: none;
+        font-size: 30px;
+        /* outline: none; */
+    }
+</style>
+
+
+
+<body>
+    <div class="man">
+        <div class="man1">
+            <div id="reel">
+                <i class="fa-solid fa-grip-lines fa-lg" style="color: #111b2c;"></i>
+                <p id="let">Calculator</p>
+            </div>
+            <div class="tt">
+                <i class="fa-solid fa-clock-rotate-left fa-lg" style="color: #131a25;"></i>
+            </div>
+        </div>
+        <br>
+        <div id="tie">
+            <div id="to"></div>
+        </div>
+        <div class="gg">
+            <div class="bb">
+                <button id="same" onclick="display('MC')">MC</button>
+                <button id="same" onclick="display('MR')">MR</button>
+                <button id="same" onclick="display('M+')">M+</button>
+                <button id="same" onclick="display('M-')">M-</button>
+                <button id="same" onclick="display('MS')">MS</button>
+                <button id="same" onclick="display('M')">M</button>
+            </div>
+
+            <div class="bb">
+                <button id="fame" onclick="Operator('%')">%</button>
+                <button id="fame" onclick="display('✓')">✓</button>
+                <button id="fame" onclick="display('x2')">x2</button>
+                <button id="fame" onclick="display('1/x')">1/x</button>
+            </div>
+            <div class="bb">
+                <button id="fame" onclick="display('CE')">CE</button>
+                <button id="fame" onclick="clearresult('C')">C</button>
+                <button id="fame" onclick="del()">del</button>
+                <button id="fame" onclick="Operator('/')">/</button>
+            </div>
+             <div class="bb">
+                <button id="famer" onclick="display(7)">7</button>
+                <button id="famer" onclick="display(8)">8</button>
+                <button id="famer" onclick="display(9)">9</button>
+                <button id="fame" onclick="Operator('*')">x</button>
+             </div>
+             <div class="bb">
+                <button id="famer" onclick="display(4)">4</button>
+                <button id="famer" onclick="display(5)">5</button>
+                <button id="famer" onclick="display(6)">6</button>
+                <button id="fame" onclick="Operator('-')">-</button>
+             </div>
+            <div class="bb">
+                <button id="famer" onclick="display(1)">1</button>
+                <button id="famer" onclick="display(2)">2</button>
+                <button id="famer" onclick="display(3)">3</button>
+                <button id="fame" onclick="Operator('+')">+</button>
+               
+            </div>
+            <div class="bb">
+                <button id="fame" onclick="display('.')">.</button>
+                <button id="famer" onclick="display(0)">0</button>
+                <button id="fame" onclick="display('^')">^</button>
+                <button id="fame" onclick="sumup(symbol)">=</button>
+                
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+<script>
+    let to = document.getElementById("to")
+    const display = (a) => {
+        to.innerHTML += a
+        value1 += a
+    }
+    let value1 = ""
+    let value2 = ""
+    let symbol = ""
+
+    function del() {
+        to.innerHTML = to.innerHTML.slice(0, -1)
+    }
+    function Operator(num) {
+        to.innerHTML += num
+        value2 = value1
+        value1 = ""
+        symbol = num
+    }
+    function clearresult() {
+        to.innerHTML = ""
+        value1 = ""
+        value2 = ""
+    }
+    function sumup(symbol) {
+        if (symbol === '+') {
+            result = Number(value2) + Number(value1)
+            to.innerHTML = result
+            value1 = result
+        } else if (symbol === '/') {
+            result = Number(value2) / Number(value1)
+            to.innerHTML = result
+            value1 = result
+
+        } else if (symbol === '-') {
+            result = Number(value2) - Number(value1)
+            to.innerHTML = result
+            value1 = result
+
+        } else if (symbol === '*') {
+            result = Number(value2) * Number(value1)
+            to.innerHTML = result
+            value1 = result
+
+        } else if (symbol === '%') {
+            result = Number(value2) % Number(value1)
+            to.innerHTML = result
+            value1 = result
+
+        }
+    }
+</script>
+
+</html>
